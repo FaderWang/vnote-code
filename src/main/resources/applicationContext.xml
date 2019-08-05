@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd">
+
+
+    <bean id="serviceLocator" class="com.fader.vnote.spring.ioc.DefaultServiceLocator">
+        <property name="person" ref="person"/>
+    </bean>
+    <bean id="person" class="com.fader.vnote.spring.ioc.Person"></bean>
+    <bean id="clientService" factory-bean="serviceLocator" factory-method="createClientServiceInstance"></bean>
+
+    <bean id="serviceA" class="com.fader.vnote.spring.ioc.cycle.ServiceA">
+        <property name="serviceB" ref="serviceB"/>
+    </bean>
+    <bean id="serviceB" class="com.fader.vnote.spring.ioc.cycle.ServiceB">
+        <property name="serviceA" ref="serviceA"/>
+    </bean>
+</beans>
