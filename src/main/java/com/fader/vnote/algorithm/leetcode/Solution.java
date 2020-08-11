@@ -1,4 +1,4 @@
-package com.fader.vnote.algorithm.practice;
+package com.fader.vnote.algorithm.leetcode;
 
 import java.util.HashMap;
 import java.util.Map;

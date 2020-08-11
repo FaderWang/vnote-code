@@ -17,6 +17,7 @@ public final class SortUtils {
      * @return
      */
     public static void insertionSort(int[] array) {
+        /** 在插入操作时，从有序部分从后往前遍历，每当当前val<array[j]时，就将当前array[j]往后移一位，留出位置。 */
         if (array == null || array.length == 0) {
             return;
         }
@@ -38,6 +39,8 @@ public final class SortUtils {
      * 冒泡排序
      * 每一次通过相邻的两个数比较
      * 直到将最大的那个数放到末尾
+     * 每一次排序找出一个最大的元素，放到末尾，排序len-1次
+     * 且在每次排序过程中，如果没有交换，说明数组是有序的，则省略后续排序
      * @param array
      */
     public static void bubbleSort(int[] array) {
