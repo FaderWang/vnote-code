@@ -1,7 +1,6 @@
-package com.fader.vnote.algorithm.base;
+package com.fader.vnote.algorithm.sort;
 
 import java.util.Arrays;
-import java.util.Map;
 import java.util.stream.IntStream;
 
 /**
@@ -42,7 +41,7 @@ public class QuickSort {
 
     /**
      * 分区函数：选择第一个数为基准，分别从右往左找小于基准，在从左往右找大于基准的，进行交换。
-     * 当两个坐标相遇，则于基准交换。
+     * 当两个坐标相遇，则与基准交换。
      * @param nums
      * @param left
      * @param right
