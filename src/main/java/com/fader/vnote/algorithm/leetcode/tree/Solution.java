@@ -86,6 +86,51 @@ public class Solution {
         return Math.max(height(root.left), height(root.right)) + 1;
     }
 
+    /**
+     * 112.路径总和
+     * @param root
+     * @param sum
+     * @return
+     */
+    public boolean hasPathSum(TreeNode root, int sum) {
+        if (root == null || sum < 0) {
+            return false;
+        }
+        if (root.left == null && root.right == null) {
+            return sum == root.val;
+        }
+        return hasPathSum(root.left, sum - root.val) || hasPathSum(root.right, sum - root.val);
+    }
+
+    /**
+     * 113.路径总和
+     * @param root
+     * @param sum
+     * @return
+     */
+    public List<List<Integer>> pathSum(TreeNode root, int sum) {
+        if (root == null) {
+            return Collections.emptyList();
+        }
+        List<List<Integer>> res = new ArrayList<>();
+        pathSum(root, sum, res, new LinkedList<>());
+        return res;
+    }
+
+    private void pathSum(TreeNode treeNode, int sum, List<List<Integer>> res, LinkedList<Integer> list) {
+        if (treeNode == null) {
+            return;
+        }
+        list.add(treeNode.val);
+        if (treeNode.left == null && treeNode.right == null && sum == treeNode.val) {
+            res.add(new ArrayList<>(list));
+            return;
+        }
+        pathSum(treeNode.left, sum - treeNode.val, res, list);
+        pathSum(treeNode.right, sum - treeNode.val, res, list);
+        list.removeLast();
+    }
+
     static class TreeNode {
 
         int val;
