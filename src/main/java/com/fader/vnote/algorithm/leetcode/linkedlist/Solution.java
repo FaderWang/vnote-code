@@ -12,6 +12,28 @@ public class Solution {
     }
 
     /**
+     * 链表反转
+     * @param head
+     * @return
+     */
+    public ListNode reverseList(ListNode head) {
+        // 遍历链表过程中改变指针方向，将当前节点next指向prev，需要一个变量prev保存上一个节点
+        if (head == null || head.next == null) {
+            return head;
+        }
+        ListNode p = head;
+        ListNode prev = null;
+        while (p != null) {
+            ListNode next = p.next;
+            p.next = prev;
+            prev = p;
+            p = next;
+        }
+
+        return prev;
+    }
+
+    /**
      * 2.两数相加
      * 输入：(2 -> 4 -> 3) + (5 -> 6 -> 4)
      * 输出：7 -> 0 -> 8

@@ -130,6 +130,42 @@ public class ArrayMain {
         return (int) Math.pow(2, target-1);
     }
 
+    private boolean[][] marked;
+    private int rows;
+    private int cols;
+
+    public boolean exist(char[][] board, String word) {
+        this.rows = board.length;
+        this.cols = board[0].length;
+        marked = new boolean[rows][cols];
+
+        for (int i = 0; i < rows; i++) {
+            for (int j = 0; j < cols; j++) {
+                if (backTracking(board, i, j, word)) {
+                    return true;
+                }
+            }
+        }
+
+        return false;
+    }
+
+    private boolean backTracking(char[][] board, int row, int col, String word) {
+        if (row == rows || row < 0 || col == cols || col < 0) {
+            return false;
+        }
+        char c = board[row][col];
+        if (marked[row][col] || word.charAt(0) != c) {
+            return false;
+        }
+        if (backTracking(board, row-1, col, word.substring(1))) {return true;}
+        if (backTracking(board, row+1, col, word.substring(1))) {return true;}
+        if (backTracking(board, row, col-1, word.substring(1))) {return true;}
+        if (backTracking(board, row, col+1, word.substring(1))) {return true;}
+
+        return false;
+    }
+
     public static void main(String[] args) {
         System.out.print(RectCover(2));
     }
