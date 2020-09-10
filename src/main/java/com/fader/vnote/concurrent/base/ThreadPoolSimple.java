@@ -5,6 +5,8 @@ import com.google.common.util.concurrent.ThreadFactoryBuilder;
 import java.io.IOException;
 import java.net.ServerSocket;
 import java.net.Socket;
+import java.util.HashMap;
+import java.util.Map;
 import java.util.concurrent.*;
 
 /**
@@ -15,9 +17,19 @@ import java.util.concurrent.*;
 public class ThreadPoolSimple {
 
     public static void createPool() {
-        //创建一个固定容量为10的线程池
-        ThreadPoolExecutor threadPoolExecutor = new ThreadPoolExecutor(10, 10,
-                60L, TimeUnit.SECONDS, new ArrayBlockingQueue<Runnable>(10));
+//        //创建一个固定容量为10的线程池
+//        ThreadPoolExecutor threadPoolExecutor = new ThreadPoolExecutor(10, 10,
+//                60L, TimeUnit.SECONDS, new ArrayBlockingQueue<Runnable>(10));
+
+        ExecutorService executorService = Executors.newCachedThreadPool();
+        executorService.execute(() -> {
+            String name = "faderw";
+            System.out.println(name);
+        });
+        new ThreadFactoryBuilder().setNameFormat("pool-%d").build();
+//        Executors.newFixedThreadPool(1);
+//        Executors.newSingleThreadExecutor();
+//        Executors.newScheduledThreadPool(4);
 
 
     }
@@ -27,6 +39,8 @@ public class ThreadPoolSimple {
         ThreadPoolExecutor threadPoolExecutor = new ThreadPoolExecutor(10, 10,
                 60L, TimeUnit.SECONDS, new ArrayBlockingQueue<Runnable>(10),
                 threadFactory, new ThreadPoolExecutor.AbortPolicy());
+        threadPoolExecutor.shutdownNow();
+        threadPoolExecutor.shutdown();
     }
 
     public static void usecase() throws IOException {
@@ -91,6 +105,8 @@ public class ThreadPoolSimple {
 //        }
 //        scheduledPool();
 
-        completionService();
+//        completionService();
+        Map<String, String> map = new HashMap<>();
+        map.put("name", "wangyuxin");
     }
 }

@@ -6,6 +6,7 @@ import org.apache.zookeeper.data.Stat;
 import org.springframework.util.Assert;
 
 import java.io.IOException;
+import java.math.BigDecimal;
 import java.util.Collections;
 import java.util.List;
 import java.util.concurrent.CountDownLatch;

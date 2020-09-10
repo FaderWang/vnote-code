@@ -19,7 +19,7 @@ public class SimpleHttpRequest {
 
     public static void get() {
         try {
-            URL url = new URL("http://httpbin.org/get");
+            URL url = new URL("web://httpbin.org/get");
             HttpURLConnection connection = (HttpURLConnection) url.openConnection();
 
             // 打印首部
@@ -51,7 +51,7 @@ public class SimpleHttpRequest {
 
     public static void post() {
         try {
-            URL url = new URL("http://httpbin.org/post");
+            URL url = new URL("web://httpbin.org/post");
             HttpURLConnection connection = (HttpURLConnection) url.openConnection();
             connection.setRequestProperty("Content-Type", "application/json; charset=UTF-8");
             connection.setDoOutput(true);
@@ -88,7 +88,7 @@ public class SimpleHttpRequest {
 
     public static void multipart() {
         try {
-            URL url = new URL("http://httpbin.org/post");
+            URL url = new URL("web://httpbin.org/post");
             HttpURLConnection connection = (HttpURLConnection) url.openConnection();
             connection.setRequestMethod("POST");
             connection.setRequestProperty("Content-Type", CONTENT_TYPE_MULTIPART);
@@ -137,7 +137,7 @@ public class SimpleHttpRequest {
         SocketAddress address = new InetSocketAddress("127.0.0.1", 1086);
         Proxy proxy = new Proxy(Proxy.Type.SOCKS, address);
 
-        URL url = new URL("http://www.google.com/");
+        URL url = new URL("web://www.google.com/");
         HttpURLConnection connection = (HttpURLConnection) url.openConnection(proxy);
 
         System.out.print(connection.getResponseCode());

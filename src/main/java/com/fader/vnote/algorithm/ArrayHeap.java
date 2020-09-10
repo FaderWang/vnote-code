@@ -97,6 +97,7 @@ public class ArrayHeap<E> {
 
     /**
      * 构建堆和删除堆都可以转换成向下堆化的过程
+     * 删除堆可以将最后一个数放到堆顶，可以防止数组空洞
      * @param k
      * @param x
      */
@@ -134,16 +135,18 @@ public class ArrayHeap<E> {
     }
 
     public static void main(String[] args) {
-        List<String> list = new ArrayList<>();
-        list.add("kobe");
-        list.add("james");
-        list.add("curry");
-        list.add("durant");
-        ArrayHeap<String> heap = new ArrayHeap<String>(list, Comparator.naturalOrder());
+//        List<String> list = new ArrayList<>();
+//        list.add("kobe");
+//        list.add("james");
+//        list.add("curry");
+//        list.add("durant");
+//        ArrayHeap<String> heap = new ArrayHeap<String>(list, Comparator.naturalOrder());
+//
+//        int len = heap.currentSize;
+//        for (int i = 0; i < len; i++) {
+//            System.out.println(heap.poll());
+//        }
 
-        int len = heap.currentSize;
-        for (int i = 0; i < len; i++) {
-            System.out.println(heap.poll());
-        }
+        System.out.println(3 >> 1);
     }
 }

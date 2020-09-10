@@ -58,7 +58,7 @@ public class FileServer {
                 handleAndResponse(request, out);
 
             } catch (IOException e) {
-                System.out.println("client handler error " + e.getMessage());
+                System.out.println("client codec error " + e.getMessage());
             }
         }
 

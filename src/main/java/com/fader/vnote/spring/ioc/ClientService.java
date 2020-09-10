@@ -16,8 +16,10 @@ public class ClientService {
         ApplicationContext applicationContext = new ClassPathXmlApplicationContext("applicationContext.xml");
 //        ClientService clientService = applicationContext.getBean("clientService", ClientService.class);
 
-        ServiceA serviceA = (ServiceA) applicationContext.getBean("serviceA");
-        ClassPathResource resource = new ClassPathResource("beans.xml");
-        System.out.println(serviceA);
+//        ServiceA serviceA = (ServiceA) applicationContext.getBean("serviceA");
+//        ClassPathResource resource = new ClassPathResource("beans.xml");
+//        System.out.println(serviceA);
+        Display display = (Display) applicationContext.getBean("display");
+        display.display();
     }
 }

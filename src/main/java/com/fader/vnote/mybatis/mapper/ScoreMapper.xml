@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.fader.vnote.mybatis.mapper.ScoreMapper">
+    <select id="getScoreById" resultMap="getScoreMap">
+        select
+          * from score where id = #{id}
+    </select>
+
+    <resultMap id="getScoreMap" type="Score">
+        <id property="id" column="id"/>
+        <result property="stuId" column="stuId"/>
+        <result property="score" column="score"/>
+        <association property="students" javaType="Students"
+            select="com.fader.vnote.mybatis.mapper.StudentsMapper.selectStu" column="stuId"/>
+    </resultMap>
+</mapper>

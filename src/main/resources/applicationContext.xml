@@ -4,16 +4,22 @@
        xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd">
 
 
-    <bean id="serviceLocator" class="com.fader.vnote.spring.ioc.DefaultServiceLocator">
-        <property name="person" ref="person"/>
-    </bean>
-    <bean id="person" class="com.fader.vnote.spring.ioc.Person"></bean>
-    <bean id="clientService" factory-bean="serviceLocator" factory-method="createClientServiceInstance"></bean>
+    <!--<bean id="serviceLocator" class="com.fader.vnote.spring.ioc.DefaultServiceLocator">-->
+        <!--<property name="person" ref="person"/>-->
+    <!--</bean>-->
+    <!--<bean id="person" class="com.fader.vnote.spring.ioc.Person"></bean>-->
+    <!--<bean id="clientService" factory-bean="serviceLocator" factory-method="createClientServiceInstance"></bean>-->
 
-    <bean id="serviceA" class="com.fader.vnote.spring.ioc.cycle.ServiceA">
-        <property name="serviceB" ref="serviceB"/>
+    <!--<bean id="serviceA" class="com.fader.vnote.spring.ioc.cycle.ServiceA">-->
+        <!--<property name="serviceB" ref="serviceB"/>-->
+    <!--</bean>-->
+    <!--<bean id="serviceB" class="com.fader.vnote.spring.ioc.cycle.ServiceB">-->
+        <!--<property name="serviceA" ref="serviceA"/>-->
+    <!--</bean>-->
+    <bean id="audi" class="com.fader.vnote.spring.ioc.cycle.Audi"></bean>
+    <bean id="bwm" class="com.fader.vnote.spring.ioc.cycle.BWM"></bean>
+    <bean id="display" class="com.fader.vnote.spring.ioc.Display">
+        <lookup-method name="getCar" bean="audi"></lookup-method>
     </bean>
-    <bean id="serviceB" class="com.fader.vnote.spring.ioc.cycle.ServiceB">
-        <property name="serviceA" ref="serviceA"/>
-    </bean>
+
 </beans>

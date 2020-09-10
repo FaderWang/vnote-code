@@ -14,6 +14,7 @@ public class MapSample {
     public static void hashMapTest() {
         Map<String, Object> map = new HashMap<>();
         map.put("age", 10);
+        map.entrySet();
 
     }
 

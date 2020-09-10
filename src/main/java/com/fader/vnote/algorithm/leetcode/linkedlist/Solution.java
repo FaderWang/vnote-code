@@ -45,21 +45,30 @@ public class Solution {
     public ListNode addTwoNumbers(ListNode l1, ListNode l2) {
         ListNode p1 = l1;
         ListNode p2 = l2;
-        ListNode res = new ListNode(-1);
+        ListNode dummy = new ListNode(0);
+        ListNode head = dummy;
         int flag = 0;
-        while (p1 != null && p2 != null) {
-            int val = flag + p1.val + p2.val;
+        while (p1 != null || p2 != null) {
+            int val1 = p1 == null ? 0 : p1.val;
+            int val2 = p2 == null ? 0 : p2.val;
+            int val = flag + val1 + val2;
             if (val >= 10) {
                 val = val % 10;
                 flag = 1;
             } else {
                 flag = 0;
             }
-            res.next = new ListNode(val);
+            head.next = new ListNode(val);
+            head = head.next;
+            if (p1 != null) p1 = p1.next;
+            if (p2 != null) p2 = p2.next;
         }
 
+        if (flag == 1) {
+            head.next = new ListNode(1);
+        }
 
-        return null;
+        return dummy.next;
     }
 
     /**

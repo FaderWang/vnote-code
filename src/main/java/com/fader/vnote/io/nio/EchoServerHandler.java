@@ -1,7 +1,6 @@
-package com.fader.vnote.io;
+package com.fader.vnote.io.nio;
 
 import java.io.IOException;
-import java.net.InetAddress;
 import java.net.InetSocketAddress;
 import java.nio.ByteBuffer;
 import java.nio.channels.SelectionKey;
@@ -18,7 +17,6 @@ import java.util.Set;
 
 public class EchoServerHandler extends Thread{
 
-    private Integer port;
     private Selector selector;
     private ServerSocketChannel serverSocketChannel;
 
@@ -26,7 +24,6 @@ public class EchoServerHandler extends Thread{
 
     public EchoServerHandler(Integer port) {
         try {
-            this.port = port;
             //开启serverSocketChannel
             serverSocketChannel = ServerSocketChannel.open();
             serverSocketChannel.socket().bind(new InetSocketAddress(port));
@@ -55,7 +52,6 @@ public class EchoServerHandler extends Thread{
             } catch (IOException e) {
                 e.printStackTrace();
             }
-
         }
     }
 

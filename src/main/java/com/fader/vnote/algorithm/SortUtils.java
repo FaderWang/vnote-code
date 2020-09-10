@@ -1,7 +1,7 @@
 package com.fader.vnote.algorithm;
 
-
-import java.util.Random;
+import java.util.*;
+import java.util.stream.IntStream;
 
 /**
  * @author FaderW
@@ -44,13 +44,13 @@ public final class SortUtils {
      * @param array
      */
     public static void bubbleSort(int[] array) {
-        if (array == null || array.length == 0) {
+        if (array == null || array.length <= 1) {
             return;
         }
         int length = array.length;
-        for (int i = 0; i < length-1; i++) {
+        for (int i = 0; i < length; i++) {
             boolean flag = false;
-            for (int j = 0; j < length-i-1; j++) {
+            for (int j = 0; j < length - i - 1; j++) {
                 if (array[j] > array[j+1]) {
                     int temp = array[j];
                     array[j] = array[j+1];
@@ -88,6 +88,19 @@ public final class SortUtils {
             array[i] = array[index];
             array[index] = temp;
         }
+    }
+
+    public static boolean isAnagram(String s, String t) {
+        if (s.length() != t.length()) {
+            return false;
+        }
+        char[] sc = s.toCharArray();
+        char[] tc = t.toCharArray();
+        Arrays.sort(sc);
+        Arrays.sort(tc);
+
+        return new String(sc).equals(new String(tc));
+
     }
 
     /**
@@ -179,6 +192,27 @@ public final class SortUtils {
         mergeSort(array, 0, array.length-1);
     }
 
+    public static void mergeSort2(int[] array) {
+        int n = array.length - 1;
+        //步长
+        int step = 1;
+        int low;
+        while(step <= n){
+            low = 0;
+            while(low + step <= n){
+                int mid = low + step - 1;
+                int high = mid + step;
+                if (high > n) {
+                    high = n;
+                }
+                merge(array,low,high, mid);
+                low = high + 1;
+            }
+            //处理末尾残余部分
+            step*=2;
+        }
+    }
+
     /**
      * 归并排序
      * 将数组从中间划分为两个子数组，递归调用此过程，直到无法划分，
@@ -220,21 +254,163 @@ public final class SortUtils {
         System.arraycopy(tempArr, 0, array, p, q-p+1);
     }
 
+    static int[] queens = new int[8];
+
+    public static void calculate8Queens(int row) {
+        if (row == 8) {
+            printQueens();
+            return;
+        }
+        for (int col = 0; col < 8; col++) {
+            if (isOk(row, col)) {
+                queens[row] = col;
+                calculate8Queens(row + 1);
+            }
+        }
+    }
+
+    private static boolean isOk(int row, int col) {
+        int leftup = col - 1;
+        int rightup = col + 1;
+        for (int i = row - 1; i >= 0; i--) {
+            if (queens[i] == col) {
+                return false;
+            }
+            if (queens[i] == leftup) {
+                return false;
+            }
+            if (queens[i] == rightup) {
+                return false;
+            }
+            leftup--;
+            rightup++;
+        }
+        return true;
+    }
+
+    private static void printQueens() {
+        for (int i = 0; i < queens.length; i++) {
+            for (int j = 0; j < queens[i]; j++) {
+                System.out.print("*");
+            }
+            System.out.print(i);
+            System.out.println();
+        }
+    }
+
+    /**
+     * 电话号码字母组合
+     * 输入："23"
+     * 输出：["ad", "ae", "af", "bd", "be", "bf", "cd", "ce", "cf"].
+     * @param digits
+     * @return
+     */
+    public static List<String> letterCombinations(String digits) {
+        if (digits == null || digits.isEmpty()) {
+            return null;
+        }
+        combination("", digits);
+        return res;
+    }
+
+    private static void combination(String combination, String digit) {
+        if (digit == null || digit.isEmpty()) {
+            res.add(combination);
+            return;
+        }
+        String letter = phone.get(digit.substring(0, 1));
+        for (int i = 0; i < letter.length(); i ++) {
+            combination(combination + letter.charAt(i), digit.substring(1));
+        }
+    }
+
+    static List<String> res = new ArrayList<>();
+    static Map<String, String> phone = new HashMap<>(10);
+    static {
+        phone.put("2", "abc");
+        phone.put("3", "def");
+        phone.put("4", "ghi");
+        phone.put("5", "jkl");
+        phone.put("6", "mno");
+        phone.put("7", "pqrs");
+        phone.put("8", "tuv");
+        phone.put("9", "wxyz");
+
+    }
+
+    public static List<String> generateParenthesis(int n) {
+        if (n < 1) {
+            return new ArrayList<>();
+        }
+        generate("", 0, 0, n);
+        return res;
+    }
+
+
+    public static void generate(String generate, int leftCount, int rightCount, int n) {
+        if (leftCount == n) {
+            int left = n - rightCount;
+            while (left > 0) {
+                generate += ")";
+                left--;
+            }
+            res.add(generate);
+            return;
+        }
+        if (rightCount + 1 <= leftCount) {
+            generate(generate + ")", leftCount, rightCount+1, n);
+        }
+        generate(generate+"(", leftCount+1, rightCount, n);
+    }
+
+    /**
+     * 二分查找
+     * @param a
+     * @param n
+     * @param val
+     */
+    public static int binarySerach(int[] a, int n, int val) {
+        int low = 0;
+        int high = n-1;
+        while (low <= high) {
+            int mid = high + (low - high) >> 1;
+            if (a[mid] == val) {
+                return mid;
+            } else if (val < a[mid]) {
+                high = mid - 1;
+            } else {
+                low = mid + 1;
+            }
+        }
+
+        return -1;
+    }
+
+
+
     public static void main(String[] args) {
 //        int[] array = {10, 2, 5, 1, 9};
 //        insertionSort(array);
-//        bubbleSort(array);
-//        selectionSort(array);
-        int[] array = new int[10];
-        Random random = new Random();
-        for (int i = 0; i < array.length; i++) {
-            array[i] = random.nextInt(100);
-        }
-        mergeSort(array, 0, array.length-1);
-        for (int i : array) {
-            System.out.print(i + ",");
-        }
+////        bubbleSort(array);
+////        selectionSort(array);
+////        int[] array = new int[10];
+////        Random random = new Random();
+////        for (int i = 0; i < array.length; i++) {
+////            array[i] = random.nextInt(100);
+////        }
+////        mergeSort2(array);
+//        for (int i : array) {
+//            System.out.print(i + ",");
+//        }
+        int[] a = IntStream.of(1,3,6,7,12,23,45,67,78,90,123,1345,2345).toArray();
+        int val = 23;
+        System.out.println(binarySerach(a, a.length, val));
 
+//        calculate8Queens(0);
 
+//        String s = "ss";
+//        System.out.println(s.substring(3).isEmpty());
+//        List<String> res = generateParenthesis(3);
+//        System.out.println(res);
     }
 }

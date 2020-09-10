@@ -25,9 +25,17 @@ public class Solution {
         return max;
     }
 
+    public void replace(String s) {
+        s = "yes";
+    }
+
     public static void main(String[] args) {
 //        System.out.println(lengthOfLongestSubstring("abba"));
-        String s = "abcabcabc";
-        System.out.println(s.indexOf('a', 4));
+//        String s = "abcabcabc";
+//        System.out.println(s.indexOf('a', 4));
+        Solution solution = new Solution();
+        String str = new String("no");
+        solution.replace(str);
+        System.out.println(str);
     }
 }

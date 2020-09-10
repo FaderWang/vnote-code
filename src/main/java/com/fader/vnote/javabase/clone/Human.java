@@ -24,29 +24,33 @@ public class Human implements Cloneable, Serializable{
 
 
     public static void main(String[] args) throws CloneNotSupportedException, IOException, ClassNotFoundException {
+//        Human human = new Human();
+//        Person person = new Person();
+//        human.setAge(20);
+//        human.setName("Lebron");
+//        human.setPerson(person);
+//
+////        Human human1 = (Human) human.clone();
+////        System.out.println(human + "," + human1);
+////        System.out.println(person + "," + human1.getPerson());
+//
+//
+//        try(ByteArrayOutputStream byteArrayOutputStream = new ByteArrayOutputStream();
+//            ObjectOutputStream objectOutputStream = new ObjectOutputStream(byteArrayOutputStream)
+//        ) {
+//            objectOutputStream.writeObject(human);
+//            try (ByteArrayInputStream byteArrayInputStream = new ByteArrayInputStream(byteArrayOutputStream.toByteArray());
+//                 ObjectInputStream objectInputStream = new ObjectInputStream(byteArrayInputStream);
+//            ){
+//                Human human1 = (Human) objectInputStream.readObject();
+//                System.out.println(human + "," + human1);
+//                System.out.println(person + "," + human1.getPerson());
+//            }
+//
+//        }
+
         Human human = new Human();
-        Person person = new Person();
-        human.setAge(20);
-        human.setName("Lebron");
-        human.setPerson(person);
-
-//        Human human1 = (Human) human.clone();
-//        System.out.println(human + "," + human1);
-//        System.out.println(person + "," + human1.getPerson());
-
-
-        try(ByteArrayOutputStream byteArrayOutputStream = new ByteArrayOutputStream();
-            ObjectOutputStream objectOutputStream = new ObjectOutputStream(byteArrayOutputStream)
-        ) {
-            objectOutputStream.writeObject(human);
-            try (ByteArrayInputStream byteArrayInputStream = new ByteArrayInputStream(byteArrayOutputStream.toByteArray());
-                 ObjectInputStream objectInputStream = new ObjectInputStream(byteArrayInputStream);
-            ){
-                Human human1 = (Human) objectInputStream.readObject();
-                System.out.println(human + "," + human1);
-                System.out.println(person + "," + human1.getPerson());
-            }
-
-        }
+        Human human1 = (Human) human.clone();
+        System.out.println(human == human1);
     }
 }

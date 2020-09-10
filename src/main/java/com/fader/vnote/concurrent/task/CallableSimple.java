@@ -7,7 +7,7 @@ import java.util.concurrent.*;
  * 2019/4/17
  */
 
-public class CallableDemo {
+public class CallableSimple {
 
     private static final ExecutorService executorService = Executors.newFixedThreadPool(1);
 

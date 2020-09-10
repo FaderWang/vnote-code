@@ -41,8 +41,12 @@ public class ListSample {
     public static void main(String[] args) {
 //        deleteTest();
 //        sublistTest();
-        List<String> list = new ArrayList<>(0);
-        list.add("name");
+//        List<String> list = new ArrayList<>(0);
+//        list.add("name");
+        String s = "name";
+        Object o = "name";
+        Object o1 = o;
+        System.out.println(o1.getClass());
     }
 
 
