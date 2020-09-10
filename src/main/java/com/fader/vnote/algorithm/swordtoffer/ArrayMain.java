@@ -151,6 +151,9 @@ public class ArrayMain {
     }
 
     private boolean backTracking(char[][] board, int row, int col, String word) {
+        if (word.length() == 0) {
+            return true;
+        }
         if (row == rows || row < 0 || col == cols || col < 0) {
             return false;
         }
@@ -166,8 +169,64 @@ public class ArrayMain {
         return false;
     }
 
+    /**
+     * 机器人的运动范围
+     * @param m
+     * @param n
+     * @param k
+     * @return
+     */
+    public int movingCount(int m, int n, int k) {
+        int[] digestSums = new int[Math.max(m, n)];
+        boolean[][] marked = new boolean[m][m];
+        calculateDigestSum(digestSums);
+        int cnt = 0;
+        dfs(digestSums, marked, cnt, m, n, 0, 0, k);
+
+        return cnt;
+    }
+
+    private void dfs(int[] digest, boolean[][] marked, int cnt, int m, int n, int i, int j, int k) {
+        if (i == m || i < 0 || j == n || j < 0) {
+            return;
+        }
+        if (digest[i] + digest[j] > k) {
+            return;
+        }
+        if (marked[i][j]) {
+            return;
+        }
+        marked[i][j] = true;
+        cnt++;
+        dfs(digest, marked, cnt, m, n, i+1, j, k);
+        dfs(digest, marked, cnt, m, n, i-1, j, k);
+        dfs(digest, marked, cnt, m, n, i, j+1, k);
+        dfs(digest, marked, cnt, m, n, i, j-1, k);
+
+        marked[i][j] = false;
+    }
+
+    private void calculateDigestSum(int[] digest) {
+        for (int i = 0; i < digest.length; i++) {
+            int n = i;
+            int sum = 0;
+            while (n > 0) {
+                sum += n%10;
+                n /= 10;
+            }
+            digest[i] = sum;
+        }
+    }
+
+
     public static void main(String[] args) {
-        System.out.print(RectCover(2));
+        ArrayMain main = new ArrayMain();
+////        System.out.print(RectCover(2));
+//        System.out.print("f".substring(1).length());
+
+        char[][] board = {{'a'}};
+        String word = "a";
+        System.out.print(main.exist(board, word));
     }
 
 }
