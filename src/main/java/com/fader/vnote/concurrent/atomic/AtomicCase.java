@@ -1,6 +1,8 @@
 package com.fader.vnote.concurrent.atomic;
 
+import java.util.concurrent.atomic.AtomicBoolean;
 import java.util.concurrent.atomic.AtomicInteger;
+import java.util.concurrent.atomic.AtomicLong;
 import java.util.concurrent.atomic.AtomicStampedReference;
 
 /**
@@ -60,6 +62,28 @@ public class AtomicCase {
 //        stampedUpdate();
         System.out.println(Integer.MAX_VALUE);
         System.out.println(Integer.MIN_VALUE);
+    private AtomicLong longCount = new AtomicLong();
+
+    private AtomicBoolean atomicBoolean = new AtomicBoolean();
+
+
+    public void add() {
+        int i = count.incrementAndGet();
+        System.out.println("current num : " + i);
     }
+
+    public void decrement() {
+        count.getAndDecrement();
+    }
+
+    public void longAdd() {
+        longCount.incrementAndGet();
+    }
+
+    public void updateFlag() {
+        atomicBoolean.compareAndSet(false, true);
+    }
+
+
 
 }
