@@ -11,9 +11,6 @@ public class Solution {
      * @param needle
      * @return
      */
-    public static int strStr(String haystack, String needle) {
-        if (needle.length() == 0 || haystack.length() == 0) {
-            return 0;
     public int strStr(String haystack, String needle) {
 //        if (needle.length() == 0) {
 //            return 0;
@@ -62,10 +59,10 @@ public class Solution {
                 } while (++i <= max && source[i] != first);
             }
             if ((i == max && source[i] != first) ||
-                i > max) {
+                    i > max) {
                 return -1;
             }
-            int j = i+1;
+            int j = i + 1;
             int k = 1;
             while (k < target.length) {
                 if (source[j] == target[k]) {
@@ -77,6 +74,8 @@ public class Solution {
             }
             if (k == target.length) {
                 return i;
+            }
+        }
         return -1;
     }
 
@@ -122,15 +121,8 @@ public class Solution {
         }
 
         return next;
-    public static void main(String[] args) {
-        System.out.println(strStr("", ""));
     }
-
     public static void main(String[] args) {
-//        int[] next = getNext("abababca");
-//        System.out.print(Arrays.toString(next));
-        System.out.print(kmpStr("hello", "ll"));
+//        System.out.println(strStr("", ""));
     }
-
-
 }
