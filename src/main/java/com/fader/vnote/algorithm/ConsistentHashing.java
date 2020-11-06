@@ -1,4 +1,4 @@
-package com.fader.vnote.algorithm.sort;
+package com.fader.vnote.algorithm;
 
 import org.springframework.util.DigestUtils;
 
