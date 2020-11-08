@@ -14,7 +14,7 @@ import java.lang.reflect.Method;
  * 2019/6/12
  */
 @NoArgsConstructor
-public final class Person implements Cloneable, Serializable {
+public class Person implements Cloneable, Serializable {
 
     private static final long serialVersionUID = -4263621926233270807L;
     public int age;
@@ -34,7 +34,7 @@ public final class Person implements Cloneable, Serializable {
 //        System.out.println(p2.age);
 //    }
 
-    public int get() {
+    protected Number get() {
         return 0;
     }
 

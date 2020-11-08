@@ -180,30 +180,25 @@ public class ArrayMain {
         int[] digestSums = new int[Math.max(m, n)];
         boolean[][] marked = new boolean[m][m];
         calculateDigestSum(digestSums);
-        int cnt = 0;
-        dfs(digestSums, marked, cnt, m, n, 0, 0, k);
-
-        return cnt;
+        return dfs(digestSums, marked, m, n, 0, 0, k);
     }
 
-    private void dfs(int[] digest, boolean[][] marked, int cnt, int m, int n, int i, int j, int k) {
+    private int dfs(int[] digest, boolean[][] marked, int m, int n, int i, int j, int k) {
         if (i == m || i < 0 || j == n || j < 0) {
-            return;
+            return 0;
         }
         if (digest[i] + digest[j] > k) {
-            return;
+            return 0;
         }
         if (marked[i][j]) {
-            return;
+            return 0;
         }
         marked[i][j] = true;
-        cnt++;
-        dfs(digest, marked, cnt, m, n, i+1, j, k);
-        dfs(digest, marked, cnt, m, n, i-1, j, k);
-        dfs(digest, marked, cnt, m, n, i, j+1, k);
-        dfs(digest, marked, cnt, m, n, i, j-1, k);
 
-        marked[i][j] = false;
+        return 1 + dfs(digest, marked, m, n, i+1, j, k)
+            + dfs(digest, marked, m, n, i-1, j, k)
+            + dfs(digest, marked, m, n, i, j+1, k)
+            + dfs(digest, marked, m, n, i, j-1, k);
     }
 
     private void calculateDigestSum(int[] digest) {

@@ -1,6 +1,5 @@
 package com.fader.vnote.algorithm.leetcode.string;
 
-import java.util.Arrays;
 
 public class Solution {
 
@@ -11,7 +10,10 @@ public class Solution {
      * @param needle
      * @return
      */
-    public int strStr(String haystack, String needle) {
+    public static int strStr(String haystack, String needle) {
+        if (needle.length() == 0 || haystack.length() == 0) {
+            return 0;
+        }
 //        if (needle.length() == 0) {
 //            return 0;
 //        }
@@ -76,6 +78,7 @@ public class Solution {
                 return i;
             }
         }
+
         return -1;
     }
 
@@ -104,7 +107,7 @@ public class Solution {
         return -1;
     }
 
-    private static int[] getNext(String pattern) {
+    private static int[] getNext(String pattern){
         int len = pattern.length();
         int[] next = new int[len];
         next[0] = -1;
@@ -122,7 +125,12 @@ public class Solution {
 
         return next;
     }
+
     public static void main(String[] args) {
-//        System.out.println(strStr("", ""));
+//        int[] next = getNext("abababca");
+//        System.out.print(Arrays.toString(next));
+        System.out.print(kmpStr("hello", "ll"));
     }
+
+
 }
