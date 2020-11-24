@@ -29,13 +29,43 @@ public class Solution {
         s = "yes";
     }
 
+    public int waysToChange(int n) {
+        int[] coins = new int[]{1, 5, 10, 25};
+        int[] dp = new int[n+1];
+        for (int i = 0; i < coins.length; i++) {
+            if (n - coins[i]  < 0) {
+                continue;
+            }
+            dp[n] = dp[n] + dp[n - coins[i]];
+        }
+
+        return dp[n];
+
+//        int[] f = new int[n + 1];
+//        f[0] = 1;
+//        for (int c = 0; c < 4; ++c) {
+//            int coin = coins[c];
+//            for (int i = coin; i <= n; ++i) {
+//                f[i] = (f[i] + f[i - coin]) % MOD;
+//            }
+//        }
+//        return f[n];n
+
+    }
+
+
+
+
+
     public static void main(String[] args) {
 //        System.out.println(lengthOfLongestSubstring("abba"));
 //        String s = "abcabcabc";
 //        System.out.println(s.indexOf('a', 4));
         Solution solution = new Solution();
-        String str = new String("no");
-        solution.replace(str);
-        System.out.println(str);
+//        String str = new String("no");
+//        solution.replace(str);
+//        System.out.println(str);
+
+        System.out.println(solution.waysToChange(1));
     }
 }
