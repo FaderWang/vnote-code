@@ -85,18 +85,3 @@ MySQL InnoDB一定会建立聚簇索引，把实际数据行和相关的键值�
 ### 聚集索引
 聚集索引：指索引项的排序方式和表中数据记录排序方式一致的索引 
 [聚簇索引与非聚簇索引（也叫二级索引）--最清楚的一篇讲解](https://cloud.tencent.com/developer/article/1541265)
-
-### 字符集以及校队规则
-[MySQL字符集及校队规则的理解](https://www.cnblogs.com/geaozhang/p/6724393.html#MySQLyuzifuji)
-
-### MYISAM和Innodb
-区别：
-- MyISAM是5.5版本之前的默认存储引擎，支持全文索引、压缩、哈希函数等，但是不支持行锁、事务。MYISAM索引文件和数据是分开的，索引叶子节点data存储指向数据文件中的数据。
-适用于大量读少量写并发低的场景。最大的缺陷就是崩溃后无法安全恢复
-- Innodb的表是根据主键组织的B+树的聚簇索引，支持外键、事务等高级事务功能。具有事务(commit)、回滚(rollback)和崩溃修复能力(crash recovery capabilities)
-的事务安全(transaction-safe (ACID compliant))型表。支持MVCC，应对高并发事务, MVCC比单纯的加锁更高效;MVCC只在 READ COMMITTED 和 REPEATABLE READ 
-两个隔离级别下工作;MVCC可以使用 乐观(optimistic)锁 和 悲观(pessimistic)锁来实现;各数据库中MVCC实现并不统一。
-
-### MYISAM为什么比Inndob查询快？
-- Innodb寻址要映射到块，再到行，MYISAM记录的直接是文件的OFFSET，定位比Innodb要快
-- Innodb还需要维护MVCC一致
