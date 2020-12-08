@@ -2,18 +2,24 @@ package com.fader.vnote.spring.ioc.cycle;
 
 import lombok.NoArgsConstructor;
 import lombok.Setter;
+import org.springframework.stereotype.Service;
+
+import javax.annotation.Resource;
 
 /**
  * @author FaderW
  * 2019/7/4
  */
-@NoArgsConstructor
+@Service
 public class ServiceB {
 
-    @Setter
-    private ServiceA serviceA;
+//    @Setter
+//    private ServiceA serviceA;
+//
+//    public ServiceB(ServiceA serviceA) {
+//        this.serviceA = serviceA;
+//    }
 
-    public ServiceB(ServiceA serviceA) {
-        this.serviceA = serviceA;
-    }
+    @Resource
+    private ServiceA serviceA;
 }
