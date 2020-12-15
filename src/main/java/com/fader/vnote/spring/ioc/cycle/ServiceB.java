@@ -21,5 +21,5 @@ public class ServiceB {
 //    }
 
     @Resource
-    private ServiceA serviceA;
+    private ServiceA service;
 }

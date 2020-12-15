@@ -15,7 +15,7 @@ import javax.annotation.Resource;
 public class ServiceA {
 
     @Resource
-    private ServiceB serviceB;
+    private ServiceB service;
 
 //    @Setter
 //    private ServiceB serviceB;
