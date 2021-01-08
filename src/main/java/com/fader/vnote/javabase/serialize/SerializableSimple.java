@@ -1,6 +1,7 @@
-package com.fader.vnote.javabase;
+package com.fader.vnote.javabase.serialize;
 
 import java.io.*;
+import java.util.Arrays;
 
 /**
  * @author FaderW
@@ -23,13 +24,16 @@ public class SerializableSimple {
 
     public static void main(String[] args) {
         User user = new User("faderw", 26);
-        try (ObjectOutputStream oos = new ObjectOutputStream(new FileOutputStream("tempFile"));){
+        ByteArrayOutputStream byteArrayOutputStream = new ByteArrayOutputStream();
+        try (ObjectOutputStream oos = new ObjectOutputStream(byteArrayOutputStream);){
             oos.writeObject(user);
         } catch (FileNotFoundException e) {
             e.printStackTrace();
         } catch (IOException e) {
             e.printStackTrace();
         }
+        // https://www.cnblogs.com/binarylei/p/10987933.html序列化源码分析
+        System.out.println(Arrays.toString(byteArrayOutputStream.toByteArray()));
 
         File file = new File("tempFile");
         try (ObjectInputStream ois = new ObjectInputStream(new FileInputStream(file))){

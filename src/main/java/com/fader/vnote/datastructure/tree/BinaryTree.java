@@ -1,4 +1,4 @@
-package com.fader.vnote.datastruct;
+package com.fader.vnote.datastructure.tree;
 
 import java.util.LinkedList;
 

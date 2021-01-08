@@ -1,5 +1,10 @@
 package com.fader.vnote.collection.list;
 
+import com.google.common.collect.Lists;
+
+import java.util.Iterator;
+import java.util.LinkedList;
+
 /**
  * @author FaderW
  * 2019/3/29
@@ -7,6 +12,29 @@ package com.fader.vnote.collection.list;
 
 public class LinkedListCase {
 
+    private static final LinkedList<String> STRING_LINKED_LIST = Lists.newLinkedList();
+
+    public static void basicUseCase() {
+        // 支持下标检索，但是底层的实现时遍历，效率不高
+        STRING_LINKED_LIST.get(0);
+        // 实现了Deque接口，可以当作队列使用，也可以当作栈使用
+        STRING_LINKED_LIST.offer("");
+        STRING_LINKED_LIST.poll();
+        STRING_LINKED_LIST.push("");
+        STRING_LINKED_LIST.poll();
+    }
+
+    public static void traverse() {
+        // 推荐使用迭代器或者增强for循环遍历，整个过程只需遍历一遍，不推荐普通下标遍历
+        for (String s : STRING_LINKED_LIST) {
+
+        }
+
+        Iterator<String> iterator = STRING_LINKED_LIST.iterator();
+        while (iterator.hasNext()) {
+            String s = iterator.next();
+        }
+    }
 
 
     public Node reserveList(Node current) {
