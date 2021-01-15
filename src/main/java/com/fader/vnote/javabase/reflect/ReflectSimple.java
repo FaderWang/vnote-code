@@ -1,10 +1,12 @@
 package com.fader.vnote.javabase.reflect;
 
+import com.google.common.collect.Maps;
 import org.apache.ibatis.annotations.Param;
 
 import java.lang.annotation.Annotation;
 import java.lang.reflect.Method;
 import java.lang.reflect.Parameter;
+import java.util.Map;
 
 public class ReflectSimple {
 
@@ -39,6 +41,10 @@ public class ReflectSimple {
 
     public static void main(String[] args) throws NoSuchMethodException {
 //        mpTest();
-        methodNameTest();
+//        methodNameTest();
+        Map<Long, String> map = Maps.newHashMap();
+        map.put(123456L, "hello");
+        String key = "123456";
+        System.out.println(map.get(Long.valueOf(key)));
     }
 }

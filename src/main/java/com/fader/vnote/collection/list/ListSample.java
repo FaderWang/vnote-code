@@ -8,6 +8,7 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 import java.util.Vector;
+import java.util.concurrent.CopyOnWriteArrayList;
 import java.util.stream.IntStream;
 
 /**
@@ -80,6 +81,15 @@ public class ListSample {
         System.out.println(vector.size());
         vector.add("11");
         System.out.println(vector.size());
+    }
+
+    public static void copyOnWriteArrayListTest(){
+        // cow list适合读多写少的场景，构造时最好传入初始化数据。默认构造器会初始化一个长度为0的数组。
+        CopyOnWriteArrayList<String> list = new CopyOnWriteArrayList<>();
+//        list = new CopyOnWriteArrayList<>(new String[]{"a", "b", "c"});
+        list.add("a");
+        // addIfAbsent不存在时则添加，copyOnArraySet依赖该方法实现
+        list.addIfAbsent("b");
     }
 
     public static void main(String[] args) throws JsonProcessingException {

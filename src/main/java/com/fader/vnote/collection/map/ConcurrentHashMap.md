@@ -5,6 +5,14 @@ jdk1.7采用分段锁，整个Hash表被分成多个段，每个段对应一个S
 jdk1.8取消了基于Segment的分段锁思想，改用CAS+Synchronized控制并发操作。在某些方面提升了性能。并且追随 1.8 
 版本的 HashMap 底层实现，使用数组+链表+红黑树进行数据存储。
 
+### 1.7中的一些特性
+下面主要分析1.8的源码，这里对1.7中的一些特性做一些简单概述。
+- 默认容量是16，默认并行度（concurrencyLevel）为16，即segment数组的长度，且必须为2的幂次方。
+- put和get时，首先根据hash取模定位到segment数组的下标，找到对应的segment，这里没有直接使用下标获取，而是通过Unsafe类通过计算
+偏移量获取对应下标的segment。
+- segment內部维护了一个HashEntry数组，HashEntry的value和next用来volatile修饰，获取最新的值。所以get不需要加锁。put操作需要获取
+所属segment的锁。尝试tryLock,否则会自旋。自旋到达最大次数则会lock阻塞的获取锁。
+
 ### 重要的成员属性
 ```java
 // node节点数组，代表整个哈希表
