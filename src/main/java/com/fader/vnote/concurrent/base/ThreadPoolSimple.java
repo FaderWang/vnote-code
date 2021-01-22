@@ -31,6 +31,9 @@ public class ThreadPoolSimple {
 //        Executors.newSingleThreadExecutor();
 //        Executors.newScheduledThreadPool(4);
 
+        //优雅终止
+        executorService.shutdown();
+        executorService.shutdownNow();
 
     }
 

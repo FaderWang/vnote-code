@@ -13,12 +13,12 @@ import org.springframework.context.annotation.Configuration;
 public class InitConfig {
 
     public static void main(String[] args) {
-//        AnnotationConfigApplicationContext applicationContext = new AnnotationConfigApplicationContext(InitConfig.class);
-////        applicationContext.getBean("")
-////        applicationContext.getBean("initBean");
-//        applicationContext.getBean(InitBean.class);
-        InitBean initBean = new InitBean();
-
-        System.out.println(Object.class.isInstance(initBean));
+        AnnotationConfigApplicationContext applicationContext = new AnnotationConfigApplicationContext(InitConfig.class);
+//        applicationContext.getBean("")
+        applicationContext.getBean("initBean");
+        applicationContext.getBean(InitBean.class);
+//        InitBean initBean = new InitBean();
+//
+//        System.out.println(Object.class.isInstance(initBean));
     }
 }
