@@ -55,5 +55,6 @@ public class DynamicSubjectProxy implements InvocationHandler {
         } catch (IOException e) {
             e.printStackTrace();
         }
+
     }
 }
