@@ -63,25 +63,27 @@ public class MyClassloader extends ClassLoader {
     }
 
     public static void main(String[] args) {
-        new Timer().schedule(new TimerTask() {
-            @Override
-            public void run() {
-                String swapPath = MyClassloader.class.getResource("").getPath() + "swap/";
-                String className = "com.fader.vnote.javabase.loader.swap.Test";
+//        new Timer().schedule(new TimerTask() {
+//            @Override
+//            public void run() {
+//                String swapPath = MyClassloader.class.getResource("").getPath() + "swap/";
+//                String className = "com.fader.vnote.javabase.loader.swap.Test";
+//
+//                //每次都实例化一个ClassLoader，这里传入swap路径，和需要特殊加载的类名
+//                MyClassloader myClassLoader = new MyClassloader(swapPath, Sets.newHashSet(className));
+//                try {
+//                    //使用自定义的ClassLoader加载类，并调用printVersion方法。
+//                    Object o = myClassLoader.loadClass(className).newInstance();
+//                    o.getClass().getMethod("printVersion").invoke(o);
+//                } catch (InstantiationException |
+//                        IllegalAccessException |
+//                        ClassNotFoundException |
+//                        NoSuchMethodException |
+//                        InvocationTargetException ignored) {
+//                }
+//            }
+//        }, 0,2000);
 
-                //每次都实例化一个ClassLoader，这里传入swap路径，和需要特殊加载的类名
-                MyClassloader myClassLoader = new MyClassloader(swapPath, Sets.newHashSet(className));
-                try {
-                    //使用自定义的ClassLoader加载类，并调用printVersion方法。
-                    Object o = myClassLoader.loadClass(className).newInstance();
-                    o.getClass().getMethod("printVersion").invoke(o);
-                } catch (InstantiationException |
-                        IllegalAccessException |
-                        ClassNotFoundException |
-                        NoSuchMethodException |
-                        InvocationTargetException ignored) {
-                }
-            }
-        }, 0,2000);
+        System.out.println(System.getenv("classpath"));
     }
 }
