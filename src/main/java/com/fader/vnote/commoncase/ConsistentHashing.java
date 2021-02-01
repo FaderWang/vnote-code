@@ -1,4 +1,4 @@
-package com.fader.vnote.algorithm;
+package com.fader.vnote.commoncase;
 
 import org.springframework.util.DigestUtils;
 
