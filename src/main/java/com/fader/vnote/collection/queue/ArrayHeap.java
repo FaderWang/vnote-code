@@ -1,4 +1,4 @@
-package com.fader.vnote.algorithm;
+package com.fader.vnote.collection.queue;
 
 import java.util.*;
 
@@ -55,7 +55,7 @@ public class ArrayHeap<E> {
 
     public void insert(E e) {
         if (e == null) {
-            throw new RuntimeException();
+            throw new NullPointerException();
         }
         int i = currentSize;
         currentSize++;
@@ -81,6 +81,11 @@ public class ArrayHeap<E> {
         return e;
     }
 
+    /**
+     * 向上堆化
+     * @param k
+     * @param x
+     */
     private void siftUp(int k, E x) {
         while (k > 0) {
             int parent = (k-1) >>> 1;

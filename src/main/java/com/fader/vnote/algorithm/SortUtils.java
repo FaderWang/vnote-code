@@ -2,6 +2,7 @@ package com.fader.vnote.algorithm;
 
 import java.util.*;
 import java.util.stream.IntStream;
+import java.util.stream.Stream;
 
 /**
  * @author FaderW
@@ -254,6 +255,49 @@ public final class SortUtils {
         System.arraycopy(tempArr, 0, array, p, q-p+1);
     }
 
+    public static void heapSort(int[] array, int n) {
+        buildHeap(array);
+        while (n > 0) {
+            int temp = array[n];
+            array[n] = array[0];
+            array[0] = temp;
+            heapify(array, 0, n);
+            n--;
+        }
+    }
+
+    private static void buildHeap(int[] array) {
+        int len = array.length;
+        for (int i = (len >>> 1) - 1; i >= 0; i--) {
+            heapify(array, i, len);
+        }
+    }
+
+    /**
+     * 堆化
+     * @param array
+     * @param i
+     * @param len
+     */
+    private static void heapify(int[] array, int i, int len) {
+        int half = len >>> 1;
+        int x = array[i];
+        while (i < half) {
+            int child = (i << 1) + 1;
+            int right = child + 1;
+            int c = array[child];
+            if (right < len && array[right] < array[child]) {
+                c = array[child = right];
+            }
+            if (x <= c) {
+                break;
+            }
+            array[i] = c;
+            i = child;
+        }
+        array[i] = x;
+    }
+
     static int[] queens = new int[8];
 
     public static void calculate8Queens(int row) {
@@ -369,7 +413,7 @@ public final class SortUtils {
      * @param n
      * @param val
      */
-    public static int binarySerach(int[] a, int n, int val) {
+    public static int binarySearch(int[] a, int n, int val) {
         int low = 0;
         int high = n-1;
         while (low <= high) {
@@ -404,7 +448,7 @@ public final class SortUtils {
 //        }
         int[] a = IntStream.of(1,3,6,7,12,23,45,67,78,90,123,1345,2345).toArray();
         int val = 23;
-        System.out.println(binarySerach(a, a.length, val));
+        System.out.println(binarySearch(a, a.length, val));
 
 //        calculate8Queens(0);
 
