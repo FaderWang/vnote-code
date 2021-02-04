@@ -5,7 +5,7 @@ import java.util.Map;
 
 /**
  * @author FaderW
- * LFU最少使用次数缓存，根据使用频率淘汰数据
+ * LFU最不常用页面置换算法(Least Frequently Used)
  * @param <K>
  * @param <V>
  */
