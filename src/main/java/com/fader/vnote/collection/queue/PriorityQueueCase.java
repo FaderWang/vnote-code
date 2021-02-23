@@ -12,23 +12,23 @@ public class PriorityQueueCase {
     static class Student implements Comparable<Student> {
 
         private String name;
-        private int priprity;
+        private int priority;
 
-        public Student(String name, int priprity) {
+        public Student(String name, int pripority) {
             this.name = name;
-            this.priprity = priprity;
+            this.priority = pripority;
         }
 
         public String getName() {
             return this.name;
         }
 
-        public int getPriprity() {
-            return priprity;
+        public int getPriority() {
+            return priority;
         }
 
         public int compareTo(Student o) {
-            return Integer.compare(this.priprity, o.getPriprity());
+            return Integer.compare(this.priority, o.getPriority());
         }
     }
 
